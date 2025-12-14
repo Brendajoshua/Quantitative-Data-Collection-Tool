@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS Research Data Collection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 LMS UX Research Tool</h1>
+            <p>Collect system performance and user satisfaction data</p>
+        </header>
+
+        <div class="consent-section">
+            <h2>🔒 Consent Form</h2>
+            <div class="consent-box">
+                <p><strong>Research Purpose:</strong> This tool collects data to improve Learning Management Systems for Computer Science education.</p>
+                <p><strong>Data Collection:</strong> We collect system performance metrics and anonymous user feedback.</p>
+                <p><strong>Privacy:</strong> All data is anonymized and used only for research purposes.</p>
+                
+                <label class="checkbox-label">
+                    <input type="checkbox" id="consentCheckbox">
+                    I agree to participate in this research study
+                </label>
+                
+                <button onclick="toggleConsent()" class="btn" id="consentBtn">
+                    I Consent to Participate
+                </button>
+            </div>
+        </div>
+
+        <div id="dataCollection" class="hidden">
+            <!-- Performance Metrics -->
+            <div class="form-section">
+                <h2>⚡ System Performance</h2>
+                
+                <div class="form-group">
+                    <label for="responseTime">Response Time (ms):</label>
+                    <input type="number" id="responseTime" min="0" max="10000" placeholder="e.g., 250">
+                    <small>Time for page to respond (0-10000ms)</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="pageLoadTime">Page Load Time (s):</label>
+                    <input type="number" id="pageLoadTime" min="0" max="60" step="0.1" placeholder="e.g., 2.5">
+                    <small>Time for full page load (0-60 seconds)</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="errorRate">Error Rate (%):</label>
+                    <input type="number" id="errorRate" min="0" max="100" step="0.1" placeholder="e.g., 1.5">
+                    <small>Percentage of errors encountered (0-100%)</small>
+                </div>
+            </div>
+
+            <!-- User Satisfaction -->
+            <div class="form-section">
+                <h2>😊 User Satisfaction</h2>
+                
+                <div class="form-group">
+                    <label>System Usability (1=Very Difficult, 5=Very Easy):</label>
+                    <div class="rating-scale">
+                        <button class="rating-btn" onclick="setRating(1, 'usability')">1</button>
+                        <button class="rating-btn" onclick="setRating(2, 'usability')">2</button>
+                        <button class="rating-btn" onclick="setRating(3, 'usability')">3</button>
+                        <button class="rating-btn" onclick="setRating(4, 'usability')">4</button>
+                        <button class="rating-btn" onclick="setRating(5, 'usability')">5</button>
+                    </div>
+                    <span id="usabilityRating">Not selected</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Overall Satisfaction (1=Very Poor, 10=Excellent):</label>
+                    <div class="rating-scale">
+                        <button class="rating-btn" onclick="setRating(1, 'satisfaction')">1</button>
+                        <button class="rating-btn" onclick="setRating(2, 'satisfaction')">2</button>
+                        <button class="rating-btn" onclick="setRating(3, 'satisfaction')">3</button>
+                        <button class="rating-btn" onclick="setRating(4, 'satisfaction')">4</button>
+                        <button class="rating-btn" onclick="setRating(5, 'satisfaction')">5</button>
+                        <button class="rating-btn" onclick="setRating(6, 'satisfaction')">6</button>
+                        <button class="rating-btn" onclick="setRating(7, 'satisfaction')">7</button>
+                        <button class="rating-btn" onclick="setRating(8, 'satisfaction')">8</button>
+                        <button class="rating-btn" onclick="setRating(9, 'satisfaction')">9</button>
+                        <button class="rating-btn" onclick="setRating(10, 'satisfaction')">10</button>
+                    </div>
+                    <span id="satisfactionRating">Not selected</span>
+                </div>
+            </div>
+
+            <!-- Demographic Information -->
+            <div class="form-section">
+                <h2>👤 User Information</h2>
+                
+                <div class="form-group">
+                    <label for="academicLevel">Academic Level:</label>
+                    <select id="academicLevel">
+                        <option value="">Select...</option>
+                        <option value="Freshman">Freshman</option>
+                        <option value="Sophomore">Sophomore</option>
+                        <option value="Junior">Junior</option>
+                        <option value="Senior">Senior</option>
+                        <option value="Graduate">Graduate</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="deviceType">Device Type:</label>
+                    <select id="deviceType">
+                        <option value="">Select...</option>
+                        <option value="Desktop">Desktop</option>
+                        <option value="Laptop">Laptop</option>
+                        <option value="Tablet">Tablet</option>
+                        <option value="Smartphone">Smartphone</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button onclick="submitData()" class="btn btn-primary">
+                    📤 Submit Data
+                </button>
+                <button onclick="exportData()" class="btn btn-secondary">
+                    💾 Export to CSV
+                </button>
+                <button onclick="resetForm()" class="btn btn-clear">
+                    🔄 Reset Form
+                </button>
+            </div>
+
+            <!-- Data Preview -->
+            <div class="preview-section">
+                <h3>📋 Data Preview</h3>
+                <pre id="dataPreview">No data entered yet</pre>
+            </div>
+        </div>
+
+        <!-- Status Messages -->
+        <div id="statusMessage" class="status hidden"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
